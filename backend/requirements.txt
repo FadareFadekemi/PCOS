@@ -1,0 +1,21 @@
+# Core App
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic
+httpx
+requests
+
+# LangChain & AI (Stateless)
+langchain-core
+langchain-text-splitters
+langchain-openai
+openai
+tavily-python
+
+# Cloud Vector DB
+supabase
+langchain-community
+
+langdetect 
+deep-translator

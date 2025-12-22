@@ -1,0 +1,8 @@
+backend/data/
+backend/.env
+backend/venv/
+backend/ingest_data.py
+backend/__pycache__/
+backend/transform_pcos_data.py
+frontend/venv/
+data/
