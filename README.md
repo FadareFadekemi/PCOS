@@ -99,7 +99,7 @@ begin
   order by documents.embedding <=> query_embedding
   limit match_count;
 end;
-$$; ```
+$$; 
 
 5. Start the Server:
 ```uvicorn app:app --reload ```
