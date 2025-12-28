@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
 
+BACKEND_URL=os.getenv("BACKEND_URL", "http://localhost:8000")
+
 # ------------------- 1. Page Configuration -------------------
 st.set_page_config(
     page_title="CystaCare Assistant", 
@@ -30,7 +32,7 @@ with st.sidebar:
     
     if st.button("🔄 Refresh History"):
         try:
-            resp = requests.get(f"http://localhost:8000/chat-memory", params={"user_id": user_id})
+            resp = requests.get(f"{BACKEND_URL}/chat-memory", params={"user_id": user_id})
             if resp.status_code == 200:
                 st.session_state.messages = resp.json()
                 st.toast("History restored!", icon="🌸")
@@ -76,7 +78,7 @@ if prompt := st.chat_input("Ask me about PCOS symptoms, diet, or research..."):
                 "history": st.session_state.messages[-6:]  # last 6 messages as context
             }
 
-            with requests.post("http://localhost:8000/chat-stream", json=payload, stream=True) as r:
+            with requests.post(f"{BACKEND_URL}/chat-stream", json=payload, stream=True) as r:
                 for chunk in r.iter_content(chunk_size=None, decode_unicode=True):
                     if chunk:
                         full_response += chunk
@@ -90,7 +92,7 @@ if prompt := st.chat_input("Ask me about PCOS symptoms, diet, or research..."):
 
             # Save to backend memory
             try:
-                requests.post("http://localhost:8000/chat-memory", json={
+                requests.post("https://cystacare-1.onrender.com/chat-memory", json={
                     "user_id": user_id,
                     "messages": [
                         {"role": "user", "content": prompt, "source": "user"},
