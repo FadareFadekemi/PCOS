@@ -21,6 +21,7 @@ Smart Routing (Hybrid RAG):
 - Vector Database	 | Supabase (pgvector)
 - Web Retrieval	   |Tavily AI
 - Orchestration	   |LangChain & Custom Async Logic
+- Deployment       |Render| https://cystacare-frontend.onrender.com/ |   
 
 
 🏗️ System Architecture
